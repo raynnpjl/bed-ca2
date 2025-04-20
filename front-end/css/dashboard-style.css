@@ -1,0 +1,336 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #000000;
+    scroll-behavior: smooth;
+}
+
+.container {
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+header {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 40px;
+    z-index: 998;
+    background-color: #4b4b4b5b;
+    backdrop-filter: blur(10px);
+}
+
+.before {
+    visibility: hidden;
+}
+
+.before.active {
+    visibility: visible;
+}
+
+.after {
+    visibility: hidden;
+}
+
+.after.active {
+    visibility: visible;
+}
+
+.head-right {
+    display: flex;
+    align-items: center;
+}
+
+.head-right button {
+    border: none;
+    padding: 10px 30px;
+    margin: 5px;
+    border-radius: 20px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.head-right button:hover {
+    opacity: 0.7;
+}
+
+.registerButton {
+    display: none;
+}
+
+.registerButton.active {
+    display: block;
+}
+
+.head-left {
+    display: flex;
+}
+
+.head-left h1 {
+    text-decoration: none;
+    padding-left: 25px;
+    color: white;
+    font-size: 20px;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-weight: 100;
+    font-style: normal;
+}
+
+.head-left a {
+    text-decoration: none;
+    padding-left: 25px;
+    color: white;
+    font-size: 15px;
+}
+
+.section-container h1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 100px;
+}
+
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 1em 0;
+    padding: 0;
+    width: 80%;
+    margin: auto;
+}
+
+section {
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    min-height: 100vh;
+    transition: all 0.35s linear;
+    display: flex;
+}
+
+.card {
+    --color: #702963;
+    --border-size: 1rem;
+    --bg-color: #252525;
+    position: relative;
+    background-color: var(--bg-color);
+    width: 320px;
+    height: 300px;
+    margin: 2rem;
+    border-radius: var(--border-size);
+    color: white;
+    place-content: center;
+    padding: 3rem 2rem;
+    isolation: isolate;
+    overflow: hidden;
+    box-sizing: border-box;
+    overflow-wrap: break-word;
+}
+
+.card::before,
+.card::after {
+    content: "";
+    position: absolute;
+}
+
+.card::before {
+    width: 200%;
+    height: 200%;
+    background-image: conic-gradient(var(--color) 0deg,
+        transparent 60deg,
+        transparent 180deg,
+        var(--color) 180deg,
+        transparent 240deg);
+    inset: -50%;
+    z-index: -2;
+    animation: border 8s linear infinite;
+}
+
+.card:hover::before {
+    animation-play-state: paused;
+}
+
+@keyframes border {
+    to {
+        transform: rotateZ(-360deg)
+    }
+}
+
+.card::after {
+    --inset: 0.25rem;
+    background-color: #111;
+    inset: var(--inset);
+    border-radius: calc(var(--border-size) - var(--inset));
+    z-index: -1;
+    transition: all 0.35s linear;
+}
+
+.card:hover::after {
+    background-color: var(--bg-color);
+}
+
+.card-info {
+    margin-top: -75px;
+}
+
+.card .title {
+    margin-inline: auto;
+    color: transparent;
+    -webkit-text-stroke: thin var(--color);
+    text-align: center;
+    font-size: 2rem;
+    line-height: 1.875rem;
+    margin-block: 2.5rem 1.5rem;
+    color: var(--color);
+}
+
+.card:hover .title {
+    color: var(--color);
+}
+
+.card .detail {
+    line-height: 1.5rem;
+    text-align: center;
+    opacity: 0.75;
+}
+
+.card .points {
+    line-height: 1.5rem;
+    text-align: center;
+}
+
+.card .date {
+    line-height: 1rem;
+    text-align: center;
+    font-size: 12px;
+    opacity: 0.75;
+}
+
+.card .notes{
+    line-height: 1.5rem;
+    text-align: center;
+}
+
+.button {
+    display: flex;
+    justify-content: center;
+}
+
+.card button {
+    margin-top: 20px;
+    position: absolute;
+    padding: 10px 25px;
+    border: 1px solid gray;
+    background-color: #0f1217;
+    color: gray;
+    border-radius: 20px;
+    box-shadow: 0 0 5px lightgray;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.card button:hover {
+    box-shadow: 0 0 15px lightgray;
+    opacity: 0.7;
+}
+
+.note-popup {
+    position: fixed;
+    top: -150%;
+    left: 50%;
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(1.25);
+    width:380px;
+    padding: 20px 30px;
+    background: #fff;
+    box-shadow: 2px 2px 5px 5px rgba(0, 0, 0, 0.15);
+    border-radius: 10px;
+    transition: top 0ms ease-in-out 200ms,
+    opacity 200ms ease-in-out 0ms,
+    transform 200ms ease-in-out 0ms;
+}
+
+.note-popup.active {
+    top: 50%;
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+    transition: top 0ms ease-in-out 200ms,
+    opacity 200ms ease-in-out 0ms,
+    transform 200ms ease-in-out 0ms;
+}
+
+.note-popup .close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 15px;
+    height: 15px;
+    background: #888;
+    color: #eee;
+    text-align: center;
+    line-height: 15px;
+    border-radius: 15px;
+    cursor: pointer;
+}
+
+.note-popup .form h2 {
+    text-align: center;
+    margin: 10px 0px 20px;
+    font-size: 30px;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    background: linear-gradient(to right, #4acfee, #53f8c9, #02d79a, #6070fd, #2a46ff, #0099ff, #4acfee);
+    background-size: 200%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: animate-gradient 2.5s linear infinite;
+}
+
+@keyframes animate-gradient {
+    to {
+        background-position: 200%;
+    }
+}
+
+.note-popup .form .form-element {
+    margin: 15px 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.note-popup .form .form-element textarea {
+    display: block;
+    width: 93.5%;
+    height: 150px;
+    padding: 10px;
+    outline: none;
+    border: 1px solid #aaa;
+    border-radius: 5px;
+}
+
+.note-popup .form .form-element button {
+    width: 50%;
+    height: 40px;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    background: #222;
+    color: #f5f5f5;
+    border-radius: 10px;
+    cursor: pointer;
+}
